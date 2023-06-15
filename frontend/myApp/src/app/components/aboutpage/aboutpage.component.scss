@@ -1,0 +1,55 @@
+.about-section {
+    // text-align: center;
+    // margin-top: 0px;
+    h1 {
+        font-size: 50px;
+        margin-bottom: 20px;
+        top: 8%;
+        left: 45%;
+        position: absolute;
+      }
+      h2{
+                font-size: 18px;
+                margin-bottom: 20px;
+                top: 25%;
+                left: 47%;
+                position: absolute;
+                color:coral;
+        
+              }
+         p {
+        font-size: 30px;
+        margin-bottom: 30px;
+        top: 58%;
+        left: 35%;
+        position: absolute;
+        color:rgb(5, 5, 59);
+        
+      }
+    }
+.cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid: 10px !important;
+    padding-top: 70px;
+
+}
+.info{
+    font-size: 30px;
+        margin-bottom: 20px;
+        top:145%;
+        left: 20%;
+        position: absolute;
+        font-style:oblique; 
+}
+
+//       h2{
+//         font-size: 20px;
+//         margin-bottom: 20px;
+//         top: 15%;
+//         left: 1%;
+//         position: absolute;
+
+//       }
+//   }
