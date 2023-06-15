@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { AboutpageComponent } from './components/aboutpage/aboutpage.component';
+import { JoinComponent } from './components/join/join.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomepageComponent,
-    AboutpageComponent
+    AboutpageComponent,
+    JoinComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
