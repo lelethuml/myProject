@@ -11,8 +11,8 @@ const routes: Routes = [
   {path: 'homepage', component: HomepageComponent},
   {path: 'aboutpage', component: AboutpageComponent},
   {path: 'join', component: JoinComponent},
-  // {path: 'register', component: RegisterComponent},
-  // {path: 'login', component: LoginComponent},u7
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({
