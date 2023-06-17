@@ -1,14 +1,15 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: 'me',
+  user: 'postgres',
   host: 'localhost',
   database: 'postgres',
   password: 'Letsdoit!',
-  port: 5433,
+  port: 5435,
 })
 
+
 const getUsers = (request, response) => {
-    pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
+    pool.query('SELECT * FROM users  ', (error, results) => {
       if (error) {
         throw error
       }
@@ -19,7 +20,7 @@ const getUsers = (request, response) => {
   const getUserById = (request, response) => {
     const id = parseInt(request.params.id)
   
-    pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
+    pool.query('SELECT firstname FROM users WHERE id = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
@@ -28,28 +29,33 @@ const getUsers = (request, response) => {
   }
 
   const createUser = (request, response) => {
-    const { name, email } = request.body
+    const {  firstname, lastname, email, password } = request.body
   
-    pool.query('INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *', [name, email], (error, results) => {
+    pool.query('INSERT INTO users (firstname, lastname, email ,password) VALUES ($1, $2, $3, $4 ) RETURNING *', [firstname, lastname, email, password], (error, results) => {
       if (error) {
         throw error
       }
-      response.status(201).send(`User added with ID: ${results.rows[0].id}`)
+      
+      const responseBody = { message : `User added with ordernumber: ${results.rows[0].id}`}
+      response.status(201).json(responseBody)
     })
   }
 
+
   const updateUser = (request, response) => {
     const id = parseInt(request.params.id)
-    const { name, email } = request.body
+    const {  firstname, email } = request.body
   
     pool.query(
-      'UPDATE users SET name = $1, email = $2 WHERE id = $3',
-      [name, email, id],
+
+      'UPDATE users SET firstname = $1, email = $2 WHERE id = $3',
+      //'UPDATE registration SET name = thabo, email = thabo@gmail.com WHERE id = $1',
+      [ firstname, email, id],
       (error, results) => {
         if (error) {
           throw error
         }
-        response.status(200).send(`User modified with ID: ${id}`)
+        response.status(200).send(`User modified with ordernumber: ${id}`)
       }
     )
   }
@@ -61,7 +67,19 @@ const getUsers = (request, response) => {
       if (error) {
         throw error
       }
-      response.status(200).send(`User deleted with ID: ${id}`)
+      response.status(200).send(`User deleted with id: ${id}`)
+    })
+  }
+
+// for breakefast
+
+  const getBreakefast = (request, response) => {
+    pool.query('SELECT * FROM breakefast  ', (error, results) => {
+      if (error) {
+        throw error
+       
+      }
+      response.status(200).json(results.rows)
     })
   }
 
@@ -71,5 +89,15 @@ const getUsers = (request, response) => {
     createUser,
     updateUser,
     deleteUser,
+    getBreakefast,
   }
-  
+
+
+
+
+
+
+
+
+
+
